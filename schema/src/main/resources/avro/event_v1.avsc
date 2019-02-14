@@ -1,0 +1,20 @@
+{
+  "type": "record",
+  "name": "Event",
+  "namespace": "ru.zhenik.example.schema.avro.v1",
+  "version": "1",
+  "doc": "Event describes some event",
+  "fields": [
+    {
+      "name": "id",
+      "doc": "Event id",
+      "type": "string"
+    },
+    {
+      "name": "description",
+      "doc": "Event description",
+      "type": ["null","string"],
+      "default": null
+    }
+  ]
+}

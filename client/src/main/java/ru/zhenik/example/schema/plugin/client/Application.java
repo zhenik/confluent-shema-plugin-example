@@ -1,4 +1,4 @@
-package ru.zhenik.example.schema.plugin;
+package ru.zhenik.example.schema.plugin.client;
 
 import java.util.Properties;
 
