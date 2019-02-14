@@ -1,3 +1,4 @@
 .idea
 *.iml
 target
+client1/src/main/resources/avro
