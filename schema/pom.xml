@@ -11,8 +11,14 @@
 
   <artifactId>schema</artifactId>
 
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.avro</groupId>
+      <artifactId>avro</artifactId>
+    </dependency>
+  </dependencies>
+
   <build>
-    <pluginManagement>
       <plugins>
         <plugin>
           <groupId>org.apache.avro</groupId>
@@ -30,13 +36,35 @@
             <stringType>String</stringType>
           </configuration>
         </plugin>
+
         <plugin>
           <groupId>io.confluent</groupId>
           <artifactId>kafka-schema-registry-maven-plugin</artifactId>
-          <!--todo: validate compatibility new generated schema-->
-          <!--todo: register new generated schema-->
+          <!-- validate compatibility new generated schema-->
+          <!-- register new generated schema-->
+          <configuration>
+            <schemaRegistryUrls>
+              <param>http://localhost:8081</param>
+            </schemaRegistryUrls>
+            <subjects>
+              <events_v1-value>src/main/resources/avro/event_v1-value.avsc</events_v1-value>
+            </subjects>
+            <outputDirectory/>
+          </configuration>
+          <goals>
+            <goal>test-compatibility</goal>
+            <goal>register</goal>
+          </goals>
+          <dependencies>
+            <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+            <dependency>
+              <groupId>com.fasterxml.jackson.core</groupId>
+              <artifactId>jackson-core</artifactId>
+              <version>2.9.4</version>
+            </dependency>
+
+          </dependencies>
         </plugin>
       </plugins>
-    </pluginManagement>
   </build>
 </project>
